@@ -6,12 +6,10 @@ function processImage(req, res) {
       method: 'POST',
       url: process.env.API_URI + '?' + 'visualFeatures=Description,Tags',
       headers: {
-          'Ocp-Apim-Subscription-Key': process.env.API_KEY,
-          'Content-Type': 'application/json'
+        'Ocp-Apim-Subscription-Key': process.env.API_KEY,
+        'Content-Type': 'application/json'
       },
-      // request body should contain source image url ..
       data: '{"url": ' + '"' + req.query.img + '"}',
-
       json: true
     };
 
