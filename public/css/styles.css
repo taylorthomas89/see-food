@@ -48,7 +48,7 @@ body {
 .cover {
   width: 100%;
   background: rgba(255, 255, 255, .5);
-  height: 400px;
+  height: 800px;
   z-index: 100;
   top: -220px;
   position: relative;
