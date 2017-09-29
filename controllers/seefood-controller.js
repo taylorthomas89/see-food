@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 function processImage(req, res) {
+  console.log("this is my query:", req.query.img);
   var authOptions = {
       method: 'POST',
       url: process.env.API_URI + '?' + 'visualFeatures=Description,Tags',
@@ -9,23 +10,31 @@ function processImage(req, res) {
           'Content-Type': 'application/json'
       },
       // request body should contain source image url ..
-      data: '{"url": ' + '"' + 'http://a57.foxnews.com/images.foxnews.com/content/fox-news/us/2017/07/15/bone-fragment-scare-forces-sabrett-hot-dog-recall/_jcr_content/par/featured_image/media-0.img.jpg/0/0/1500155561682.jpg?ve=1' + '"}',
+      data: '{"url": ' + '"' + req.query.img + '"}',
 
       json: true
     };
 
-      return axios(authOptions)
-        .then(function(response){
-          console.log(response.data);
-          console.log(response.status);
-      })
-        .catch(function(error){
-          console.log("ERROR: ");
-          console.log(error);
-      });
+    axios(authOptions)
+      .then(function(response){
+        console.log(response.data);
+        // console.log(response.data.description.tags);
+        var arr = response.data.description.tags
+        var hot = arr.indexOf('hot')
+        var dog = arr.indexOf('dog')
+        var hotdog = arr.indexOf('hotdog')
+
+        if((hot >= 0 && dog >= 0) || hotdog >= 0) {
+          res.json({result: true})
+        }
+        else {
+          res.json({result: false})
+        }
+    })
+    .catch(function(error){
+      console.log("ERROR: ");
+      console.log(error);
+    });
 }
 
-
-module.exports = {
-  processImage
-}
+module.exports = { processImage }

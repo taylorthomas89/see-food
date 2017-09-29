@@ -6,7 +6,7 @@
     <p class="text-center">Enter the image URL of a piece of food you wish to know more about.  Our predictive algorithm has been designed to inform you of the food you eat before you take that first bite.</p>
 
     <div class="form-group">
-      <input type="text" name="inputImage" class="form-control" data-ng-model="imgURL" />
+      <input type="text" name="inputImage" class="form-control" data-ng-model="imgURL" data-ng-change="updatePage()"/>
       <button class="btn btn-primary cbtn" data-ng-click="processImage()">Analyze image</button>
     </div>
 
