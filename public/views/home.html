@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="hero-container">
+
+    <h1 class="text-center">See Food</h1>
+    <p class="text-center">Enter the image URL of a piece of food you wish to know more about.  Our predictive algorithm has been designed to inform you of the food you eat before you take that first bite.</p>
+
+    <div class="form-group">
+      <input type="text" name="inputImage" class="form-control" data-ng-model="imgURL" />
+      <button class="btn btn-primary cbtn" data-ng-click="processImage()">Analyze image</button>
+    </div>
+
+  </div>
+
+  <div class="col-md-12">
+    <div class="spinner-container" data-ng-show="loading">
+      <img src="../assets/Rolling.svg" class="spinner">
+    </div>
+    <div class="cover" data-ng-show="loading"></div>
+      <div class="img-uploaded" ng-class="{'img-uploaded-adjust' : loading}" style="background-image: url({{imgURL}})"></div>
+  </div>
+
+  <div class="hotdog">
+    <img src="../assets/hotdog.png">
+  </div>
+
+  <div class="not-hotdog">
+    <img src="../assets/nothotdog.png">
+  </div>
+
+</div>
